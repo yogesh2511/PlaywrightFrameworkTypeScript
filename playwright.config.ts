@@ -34,7 +34,7 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('')`. */
   //  baseURL: 'https://www.way2automation.com/MediShopWebApp',
 
-    headless:false,
+    headless:true,
     screenshot:'on',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
