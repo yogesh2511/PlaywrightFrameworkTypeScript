@@ -1,17 +1,24 @@
-import { expect } from '@playwright/test';
-import { test } from '../fixture/hooks-fixture';
+import { test, expect } from '@playwright/test';
 
-test('Navigate to Home page', async ({ gotoUrl, page }) => {
-  await expect(page.getByTestId('account_menu_button')).toBeVisible();
+test('TF #01,TS #01 has title', async ({ page }) => {
+  await page.goto('https://www.testmuai.com/blog/');
+ await expect(page).toHaveTitle('TestMu AI (Formerly LambdaTest) Blogs');
 });
-
-test('Navigate to Home2 page', async ({ gotoUrl, page }) => {
-  await expect(page.getByTestId('account_menu_button')).toBeVisible();
+ 
+test('TF #01,TS #02 get started link', async ({ page }) => {
+  await page.goto('https://www.testmuai.com/blog/');
+ await expect(page).toHaveTitle('TestMu AI (Formerly LambdaTest) Blogs');
 });
-
-test('Navigate to Home3 page', async ({ gotoUrl, logout }) => {
+test('TF #01,TS #03 has title', async ({ page }) => {
+   await page.goto('https://www.testmuai.com/blog/');
+ await expect(page).toHaveTitle('TestMu AI (Formerly LambdaTest) Blogs');
+});
   
+test('TF #01,TS #04 get started link', async ({ page }) => {
+  await page.goto('https://www.testmuai.com/blog/');
+ await expect(page).toHaveTitle('TestMu AI (Formerly LambdaTest) Blogs');
 });
+
 // pagetest('Check out the product',async({navigation,page})=>{
 //    let shopePage= await navigation.goToShoPage();
 //    await shopePage.validate();
