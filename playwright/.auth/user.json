@@ -1,0 +1,29 @@
+{
+  "cookies": [
+    {
+      "name": "medishop_session",
+      "value": "tok-LYX4S9",
+      "domain": "www.way2automation.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.way2automation.com",
+      "localStorage": [
+        {
+          "name": "medishop.profile::trainer@way2automation.com",
+          "value": "{\"name\":\"Rahul Arora\",\"email\":\"trainer@way2automation.com\",\"phone\":\"+1 (555) 019-2834\"}"
+        },
+        {
+          "name": "medishop.orders::trainer@way2automation.com",
+          "value": "[{\"id\":\"MS-8492-AX\",\"date\":\"2023-10-24\",\"items\":[{\"name\":\"Lisinopril 20mg\",\"qty\":1,\"note\":\"30 tabs\",\"price\":22.5},{\"name\":\"Atorvastatin 40mg\",\"qty\":1,\"note\":\"30 tabs\",\"price\":20}],\"total\":42.5,\"status\":\"Delivered\",\"payment\":\"Credit / Debit Card\",\"address\":\"Rahul Arora, 42 Willow Court, Sector 21, Chandigarh, Punjab 160022\"},{\"id\":\"MS-9102-BY\",\"date\":\"2023-10-28\",\"items\":[{\"name\":\"Amoxicillin 500mg\",\"qty\":1,\"note\":\"20 caps · Prescription required\",\"price\":18}],\"total\":18,\"status\":\"Pending Signature\",\"payment\":\"Cash on Delivery\",\"address\":\"Rahul Arora, 42 Willow Court, Sector 21, Chandigarh, Punjab 160022\"},{\"id\":\"MS-9255-CZ\",\"date\":\"2023-11-02\",\"items\":[{\"name\":\"Daily Multivitamin Supplement\",\"qty\":1,\"note\":\"60 gummies\",\"price\":17.5},{\"name\":\"Vitamin D3\",\"qty\":1,\"note\":\"8 capsules\",\"price\":18.49}],\"total\":35.99,\"status\":\"Processing\",\"payment\":\"UPI App\",\"address\":\"Rahul Arora, 42 Willow Court, Sector 21, Chandigarh, Punjab 160022\"}]"
+        }
+      ]
+    }
+  ]
+}
