@@ -1,27 +1,26 @@
-Medishop Automation Framework
-This repository contains the end-to-end (E2E) testing framework for Medishop, built using Playwright and TypeScript. It utilizes a robust Page Object Model (POM) architecture, custom fixtures, multi-environment configurations, and handles complex authentication states (Local Storage + Session Storage).
+# Medishop Automation Framework
 
-Prerequisites
-Node.js: v18 or v20+ recommended.
+This repository contains the end-to-end (E2E) testing framework for Medishop, built using [Playwright](https://playwright.dev/) and TypeScript. It utilizes a robust Page Object Model (POM) architecture, custom fixtures, multi-environment configurations, and handles complex authentication states (Local Storage + Session Storage).
 
-npm: Installed alongside Node.js.
+## Prerequisites
 
-Installation
-Clone the repository:
+*   **Node.js**: v18 or v20+ recommended.
+*   **npm**: Installed alongside Node.js.
 
-Bash
-git clone <repository-url>
-cd MedishopAutomation
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd MedishopAutomation
+
 Install dependencies:
-
 Bash
-npm install
+ npm install
+ 
 Install Playwright browsers:
-
-Bash
 npx playwright install --with-deps
-Project Structure
-Plaintext
+
 MedishopAutomation/
 ├── .github/workflows/       # GitHub Actions CI/CD pipelines (playwright.yml)
 ├── env-files/               # Environment-specific configuration files (.env.demo, .env.stage)
@@ -33,15 +32,17 @@ MedishopAutomation/
 ├── utils/                   # Reusable utility functions (common-utils.ts)
 ├── playwright.config.ts     # Main Playwright configuration file
 └── package.json             # Project dependencies and custom npm run scripts
+
 Configuration
 This framework uses dotenv and cross-env to manage environments. Variables are loaded from the env-files/ directory based on the ENV_NAME passed during execution.
 
 Ensure you have the required environment files set up (e.g., env-files/.env.demo):
+Ensure you have the required environment files set up (e.g., env-files/.env.demo):
 
-Properties
-BASE_URL=https://your-demo-url.com
+BASE_URL=[https://your-demo-url.com](https://your-demo-url.com)
 USERNAME=demo_user
 PASSWORD=demo_pass
+
 Authentication & State Management
 The framework uses Playwright's Setup Project pattern.
 
