@@ -4,84 +4,154 @@ This repository contains the end-to-end (E2E) testing framework for Medishop, bu
 
 ## Prerequisites
 
-*   **Node.js**: v18 or v20+ recommended.
-*   **npm**: Installed alongside Node.js.
+- **Node.js:** v18 or v20+ recommended.
+- **npm:** Installed alongside Node.js.
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd MedishopAutomation
+### 1. Clone the Repository
 
-Install dependencies:
-Bash
- npm install
- 
-Install Playwright browsers:
+```bash
+git clone <repository-url>
+cd MedishopAutomation
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Install Playwright Browsers
+
+```bash
 npx playwright install --with-deps
+```
 
+## Project Structure
+
+```text
 MedishopAutomation/
-├── .github/workflows/       # GitHub Actions CI/CD pipelines (playwright.yml)
-├── env-files/               # Environment-specific configuration files (.env.demo, .env.stage)
-├── fixture/                 # Custom Playwright fixtures (pom-fixtures, hooks, multi-role)
-├── pages/                   # Page Object Model (POM) classes (LoginPage, ShopPage, etc.)
-├── playwright/.auth/        # Auto-generated saved authentication states (user.json, session.json)
-├── test-data/               # JSON/CSV files containing static test data
-├── tests/                   # E2E test files (*.spec.ts) and Global Setup (auth.setup.ts)
-├── utils/                   # Reusable utility functions (common-utils.ts)
-├── playwright.config.ts     # Main Playwright configuration file
-└── package.json             # Project dependencies and custom npm run scripts
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
+├── env-files/
+│   ├── .env.demo
+│   └── .env.stage
+├── fixture/
+│   ├── pom-fixtures/
+│   ├── hooks/
+│   └── multi-role/
+├── pages/
+│   ├── LoginPage.ts
+│   └── ShopPage.ts
+├── playwright/
+│   └── .auth/
+│       ├── user.json
+│       └── session.json
+├── test-data/
+├── tests/
+│   ├── *.spec.ts
+│   └── auth.setup.ts
+├── utils/
+│   └── common-utils.ts
+├── playwright.config.ts
+└── package.json
+```
 
-Configuration
-This framework uses dotenv and cross-env to manage environments. Variables are loaded from the env-files/ directory based on the ENV_NAME passed during execution.
+## Configuration
 
-Ensure you have the required environment files set up (e.g., env-files/.env.demo):
-Ensure you have the required environment files set up (e.g., env-files/.env.demo):
+This framework uses `dotenv` and `cross-env` to manage environments. Variables are loaded from the `env-files/` directory based on the `ENV_NAME` passed during execution.
 
-BASE_URL=[https://your-demo-url.com](https://your-demo-url.com)
+Create the required environment file, such as `env-files/.env.demo`.
+
+Example: `env-files/.env.demo`
+
+```dotenv
+BASE_URL=https://your-demo-url.com
 USERNAME=demo_user
 PASSWORD=demo_pass
+```
 
-Authentication & State Management
+Replace the example values with your actual test environment details. Never commit real credentials to GitHub.
+
+## Authentication & State Management
+
 The framework uses Playwright's Setup Project pattern.
 
-tests/auth.setup.ts runs first, logging into the application.
+1. `tests/auth.setup.ts` runs first and logs into the application.
+2. Standard authentication state (Cookies and Local Storage) is saved to `playwright/.auth/user.json`.
+3. Custom Session Storage is saved to `playwright/.auth/session.json`.
+4. Custom fixtures restore the saved state so subsequent tests begin authenticated without repeating the UI login flow.
 
-It saves both standard state (Cookies/Local Storage) to playwright/.auth/user.json and custom Session Storage to session.json.
+**Security:** Keep generated authentication files out of version control because they may contain sensitive session information.
 
-Custom fixtures inject this saved state into the browser context, ensuring all subsequent tests begin fully authenticated without repeating the UI login flow.
+## Running Tests
 
-Running Tests
-Tests can be executed using the custom scripts defined in package.json.
+Tests can be executed using the custom scripts defined in `package.json`.
 
-Run Demo Environment Tests
-Bash
-# Run headless (background)
+### Run Demo Environment Tests
+
+**Headless mode:**
+
+```bash
 npm run test_demo
+```
 
-# Run headed (visible browser)
+**Headed mode (visible browser):**
+
+```bash
 npm run test_demo_cr_hd
+```
 
-# Run with Playwright UI mode (Recommended for debugging)
+**Playwright UI mode (recommended for debugging):**
+
+```bash
 npm run test_demo_ui
-Advanced Execution
-Bash
-# Run tests tagged with @UAT
+```
+
+## Advanced Execution
+
+**Run tests tagged with `@UAT`:**
+
+```bash
 npm run test_uat_cr_hd
+```
 
-# Run only tests that failed in the previous run
+**Run tests that failed in the previous run:**
+
+```bash
 npm run test_demo_cr_hd_lf
+```
 
-# Run against the Staging environment
+**Run against the Staging environment:**
+
+```bash
 npm run test_stage
-CI/CD Pipeline (GitHub Actions)
-This project includes a continuous integration workflow located at .github/workflows/playwright.yml.
+```
 
-Triggers: Automatically runs on push and pull_request to the main or master branches.
+## CI/CD Pipeline (GitHub Actions)
 
-Sharding: The test suite is sharded across 4 parallel runners to drastically reduce execution time.
+This project includes a continuous integration workflow located at `.github/workflows/playwright.yml`.
 
-Blob Reporting: Each shard generates a blob report. A final merge job consolidates all blob files into a single, cohesive HTML report.
+### Pipeline Features
 
-Artifacts: The final HTML report is uploaded as a GitHub Artifact accessible on the Actions run summary page and is retained for 14 days.
+- **Triggers:** Automatically runs on `push` and `pull_request` to the `main` or `master` branches.
+- **Sharding:** The test suite is distributed across four parallel runners to reduce execution time.
+- **Blob Reporting:** Each shard generates a Playwright blob report.
+- **Report Merging:** A final job combines the blob reports into a single HTML report.
+- **Artifacts:** The final HTML report is uploaded as a GitHub Actions artifact and retained for 14 days, as configured in the workflow.
+
+## Key Features
+
+- Playwright and TypeScript E2E testing
+- Page Object Model (POM) architecture
+- Reusable fixtures and utility functions
+- Environment-specific configuration
+- Authentication state reuse
+- Parallel test execution
+- Consolidated HTML reporting
+
+---
+
+**Built with Playwright and TypeScript.**
